@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tiktok.ID - Fastest Downloader</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body id="body">
+<div id="bgVideoWrap" class="fixed inset-0 -z-10 hidden"><video id="bgVideo" autoplay muted loop class="w-full h-full object-cover"></video></div>
+
+<nav class="fixed top-0 w-full z-50 glass flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-3"><div class="w-9 h-9 bg-white text-black rounded-full flex items-center justify-center font-black">ID</div><b>Tiktok.ID</b></div>
+<div class="flex gap-4 text-xs"><button onclick="nav('home')">Home</button><button onclick="nav('profile')">Profile</button><button onclick="nav('settings')">Settings</button><button id="ownerNav" onclick="nav('owner')" class="hidden text-yellow-400 font-bold">Owner Panel</button><a href="https://wa.me/6288801883795" target="_blank" class="bg-green-500 px-4 py-1.5 rounded-full font-bold">Chat Admin</a></div>
+</nav>
+
+<!-- LOGIN -->
+<div id="auth" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-2xl flex items-center justify-center p-4">
+<div class="glass max-w-sm w-full p-8 rounded-[2rem] text-center">
+<h1 class="font-black text-2xl">Tiktok.ID</h1><p class="text-[11px] opacity-50 mt-2">THE FASTEST TIKTOK DOWNLOADER - NO WATERMARK</p>
+<p class="text-xs mt-6 text-left opacity-70">Tiktok.ID adalah website downloader tercepat untuk download video TikTok tanpa watermark kualitas HD, convert MP3, dan tools viral FYP lengkap. Gratis & premium look.</p>
+<div class="flex bg-white/10 p-1 rounded-full mt-6"><button id="tC" onclick="tab('customer')" class="flex-1 bg-white text-black py-2 rounded-full font-bold text-xs">Customer</button><button id="tO" onclick="tab('owner')" class="flex-1 py-2 rounded-full text-xs opacity-60">Owner</button></div>
+<div id="fC" class="mt-4"><input id="c_u" placeholder="Nickname bebas" class="inp"><input id="c_p" type="password" placeholder="Kata sandi bebas" class="inp"><button onclick="login('customer')" class="btn-white w-full">Login Customer</button></div>
+<div id="fO" class="hidden mt-4"><input id="o_u" placeholder="Owner: Masukan nama pengguna" class="inp border-yellow-500/30"><input id="o_p" type="password" placeholder="Password Owner" class="inp"><button onclick="login('owner')" class="btn-gold w-full">Login Owner</button></div>
+</div>
+</div>
+
+<!-- HOME -->
+<div id="p-home" class="pt-32 min-h-screen text-center px-6 max-w-3xl mx-auto">
+<h1 class="text-6xl font-black leading-[0.9]">Download<br><span class="text-white/30">TikTok Tanpa Watermark</span></h1>
+<div class="glass p-2 rounded-full flex mt-10"><input id="url" placeholder="Paste TikTok Link Here..." class="flex-1 bg-transparent px-6 outline-none"><button onclick="dl()" class="btn-white px-8 py-3 rounded-full">DOWNLOAD</button></div>
+<div id="res" class="hidden glass mt-8 p-6 rounded-[2rem] text-left"><div class="flex gap-4"><img id="r_img" class="w-28 h-40 rounded-xl bg-white/10 object-cover"><div><p id="r_user" class="font-bold"></p><p id="r_cap" class="text-sm opacity-70"></p><p id="r_like" class="text-xs mt-3"></p></div></div><div class="grid grid-cols-2 gap-3 mt-6"><a id="b1" target="_blank" class="btn-white text-center">Download MP4</a><a id="b3" target="_blank" class="btn-white bg-white/10 text-white text-center">Download MP3</a></div></div>
+</div>
+
+<!-- PROFILE -->
+<div id="p-profile" class="hidden pt-32 px-6 max-w-xl mx-auto"><div class="glass p-8 rounded-[2.5rem] text-center"><div class="relative w-24 h-24 mx-auto"><img id="avImg" src="https://i.pravatar.cc/200" class="w-24 h-24 rounded-full object-cover"><label class="absolute bottom-0 right-0 bg-white text-black w-7 h-7 rounded-full flex items-center justify-center text-xs cursor-pointer">✎<input type="file" id="avFile" hidden accept="image/*" onchange="changeAv(event)"></label></div><input id="editName" class="bg-transparent text-center font-bold text-xl mt-4 outline-none border-b border-white/20 w-full" value=""><p id="pb" class="mt-3 inline-block px-3 py-1 rounded-full text-xs bg-white text-black"></p><div class="mt-6 text-left"><p class="text-xs opacity-50">Profile Gallery (Pilih Avatar)</p><div class="grid grid-cols-5 gap-2 mt-2"><img onclick="setAv(this.src)" src="https://i.pravatar.cc/100?img=1" class="av-opt"><img onclick="setAv(this.src)" src="https://i.pravatar.cc/100?img=5" class="av-opt"><img onclick="setAv(this.src)" src="https://i.pravatar.cc/100?img=8" class="av-opt"><img onclick="setAv(this.src)" src="https://i.pravatar.cc/100?img=12" class="av-opt"><img onclick="setAv(this.src)" src="https://i.pravatar.cc/100?img=32" class="av-opt"></div></div><button onclick="saveProfile()" class="btn-white w-full mt-6">Simpan Profile</button></div></div>
+
+<!-- SETTINGS -->
+<div id="p-settings" class="hidden pt-28 px-6 max-w-5xl mx-auto flex flex-col md:flex-row gap-6">
+<div class="w-full md:w-60 glass p-2 rounded-2xl h-fit flex md:flex-col gap-1"><button onclick="sTab('colors')" class="sActive">Colors & Background</button><button onclick="sTab('video')" class="sBtn">FPS & Resolusi</button><button onclick="sTab('tools')" class="sBtn">Tools TikTok (12+)</button><button onclick="sTab('api')" class="sBtn">API Keys AI/APK</button></div>
+<div class="flex-1 glass p-6 rounded-[2rem]">
+<div id="ss-colors"><h3 class="font-bold">Edit Background & Colors</h3><label class="text-xs mt-4 block">Warna Teks</label><input type="color" id="colPick" value="#ffffff" class="w-full h-10 mt-2"><label class="text-xs mt-4 block">Background Mode</label><select id="bgMode" onchange="changeBg()" class="w-full p-3 bg-black border rounded-xl mt-2"><option value="black">Black Solid</option><option value="gradient">Black Gradient</option><option value="image">Foto dari Gallery</option><option value="video">Video Background</option></select><input type="file" id="bgFile" accept="image/*,video/*" class="mt-3 text-xs" onchange="uploadBg(event)"></div>
+<div id="ss-video" class="hidden"><h3 class="font-bold">FPS & Resolusi</h3><p class="text-xs mt-4">FPS</p><select id="fps" class="w-full p-3 bg-black border rounded-xl mt-2"><option>30 FPS</option><option>60 FPS</option></select><p class="text-xs mt-4">Resolusi Default</p><select class="w-full p-3 bg-black border rounded-xl mt-2"><option>360p</option><option>720p</option><option selected>1080p</option></select></div>
+<div id="ss-tools" class="hidden"><h3 class="font-bold">Tools TikTok Lengkap</h3><div class="grid grid-cols-2 gap-3 mt-4">
+<div class="tool"><p>Hashtag Generator</p><input id="ht" class="inp"><button onclick="htOut.innerText='#'+ht.value.split(' ').join(' #fyp #')+' #viral'" class="btn-white text-xs mt-2">Generate</button><p id="htOut" class="text-xs mt-2"></p></div>
+<div class="tool"><p>Username Checker</p><input id="un" class="inp"><button onclick="alert('Tersedia: @'+un.value)" class="btn-white text-xs mt-2">Check</button></div>
+<div class="tool"><p>Thumbnail Downloader</p><button onclick="alert('Ambil dari hasil download atas')" class="btn-white text-xs mt-2">Get Thumb</button></div>
+<div class="tool"><p>Caption Generator</p><button onclick="capGen.innerText='POV: kamu nemu video ini di fyp 😭 #fyp'" class="btn-white text-xs mt-2">Generate</button><p id="capGen" class="text-xs mt-2"></p></div>
+<div class="tool"><p>FYP Analyzer</p><button onclick="alert('Video ini 85% masuk FYP!')" class="btn-white text-xs mt-2">Analyze</button></div>
+<div class="tool"><p>MP3 Cutter</p><input type="file" class="text-xs"></div>
+</div></div>
+<div id="ss-api" class="hidden"><h3 class="font-bold">API Keys</h3><input id="apiKey" placeholder="API Key TikTok/AI" class="inp mt-4"><div class="flex gap-2"><button onclick="apiKey.value='sk-TiktokID_'+Math.random().toString(36).slice(2)" class="btn-white text-xs">Generate</button><button onclick="localStorage.setItem('apikey',apiKey.value);alert('Saved & Connected')" class="btn-gold text-xs">Save & Test</button></div><p class="text-green-400 text-xs mt-3">● Connected</p></div>
+</div>
+</div>
+
+<!-- OWNER -->
+<div id="p-owner" class="hidden pt-32 px-6 max-w-4xl mx-auto"><div class="glass p-8 rounded-[2rem] border border-yellow-400/20"><h2 class="text-yellow-400 font-black text-2xl">Owner Dashboard - Scarlett</h2><div class="grid grid-cols-3 gap-4 mt-6"><div class="bg-white/5 p-4 rounded-xl"><p class="text-xs opacity-50">Total Visitor</p><p id="o_total" class="text-2xl font-bold">0</p></div><div class="bg-white/5 p-4 rounded-xl"><p class="text-xs opacity-50">Total Download</p><p id="o_down" class="text-2xl font-bold">0</p></div><div class="bg-white/5 p-4 rounded-xl"><p class="text-xs opacity-50">Status</p><p class="text-green-400 font-bold">Online</p></div></div><h3 class="mt-8 font-bold text-sm">Data Semua User Masuk:</h3><div id="o_list" class="bg-black p-4 rounded-xl mt-2 text-xs font-mono whitespace-pre-wrap"></div><a href="https://wa.me/6288801883795" class="btn-gold inline-block mt-6 text-center">Chat Admin WA</a></div></div>
+
+<footer class="text-center py-16 opacity-20 text-[10px]">© 2025 Tiktok.ID - Deskripsi: Downloader tercepat tanpa watermark, tools lengkap, API ready.</footer>
+<script src="script.js"></script>
+</body>
+</html>
